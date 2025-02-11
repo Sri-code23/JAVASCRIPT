@@ -1417,6 +1417,15 @@ Output:
 ```
 In this example, the outer loop will execute 3 times, and the inner loop will execute 3 times for each iteration of the outer loop.
 
+## Example 5: For Loop with (of Array)
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+for (const number of numbers) {
+    console.log(number);
+}
+
+```
 ## Key Differences between For and While Loops
 
 *   In a `for` loop, the initialization, condition, and increment statements are combined in a single line. In a `while` loop, these statements are separate.
@@ -1430,3 +1439,299 @@ When to Use For Loops
 *   Use a `for` loop when you need to simplify your code by combining the initialization, condition, and increment statements in a single line.
   
 
+# number guessing game
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>number guess</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 id="heading">guess the number 1 - 100 </h1>
+            <input id="guess">
+            <button class="submit">Enter</button>
+            <!-- <div class="output">
+                <p class="output_field">output</p>
+            </div> -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+```
+
+styles
+```css
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    width: 300px;
+    height: 200px;
+    border: 0.2ex solid grey;
+    background-color: #1c1e2e;
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#heading{
+    font-size: 20px;
+}
+
+.card{
+    background-color: #1c1e2e;
+    border-radius: 10px;
+    padding: 10px 10px;
+    width: 280px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input{
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    width: 80%;
+    height: 20px;
+    border: 0.1ex solid grey;
+    outline: none;
+    padding: 20px 20px;
+    font-size: 25px;
+}
+
+.submit{
+    background-color: #f1f1f1;
+    padding: 10px 10px;
+    margin-top: 10px;
+    width:80%;
+    border: 0.1ex solid rgb(0, 0, 0);
+}
+
+.output_div{
+    width: 70%;
+    height: auto;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding:0px 10px;
+    border-radius: 5px;
+    border: 0.1ex solid grey;
+    background-color: rgb(0, 0, 0);
+}
+
+.playagain{
+    background-color: #000000;
+    border-radius: 10px;
+    padding: 10px 10px;
+    width: 280px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.playagain h4{
+    color: rgb(0, 182, 76);
+    font-size: 30px;    
+}
+
+.playagain_button{
+    background: transparent;
+    font-size: 70px;
+    color: rgb(255, 255, 255);
+    padding: 10px 10px;
+    margin-bottom: 30px;
+    width:80%;
+    border: none;
+    border-radius: 5px;
+}
+
+```
+
+script
+```js
+// number guessing game
+
+let user_guess = document.getElementById("guess");
+const button = document.querySelector(".submit");
+
+const container = document.querySelector(".container");
+let notify = document.createElement("div");
+notify.classList.add("output_div");
+
+
+const minvalue = 1;
+const maxvalue = 100;
+const answer = Math.floor((Math.random() * maxvalue) + minvalue);
+
+button.onclick = function(){
+    notify.innerHTML = '<p class="output_field"></p>';
+    container.append(notify);
+    let output = document.querySelector(".output_field");
+    
+    let guess = user_guess.value; 
+    guess = Number(guess);
+
+    let gameover = false; 
+
+    while(!gameover){
+        if(isNaN(guess) || guess === " " ){
+            output.textContent = "Please enter a number";
+        }
+        else if(guess < minvalue || guess > maxvalue){
+            output.textContent = "Please enter a number between " + minvalue + " and " + maxvalue; // fix typo
+        }
+        else if(guess >= minvalue && guess <= maxvalue){
+            if(guess < answer){
+                output.textContent = "Too low!";
+            }
+            else if(guess > answer){
+                output.textContent = "Too high!";
+            }
+            else if(guess === answer){ 
+                // output.textContent = "You won!";
+                // output.style.color = "green";
+                container.style.display = "none";
+                let playagain = document.createElement("div");
+                playagain.classList.add("playagain");
+                playagain.style.backgroundColor = "#1c1e2e";
+                playagain.innerHTML = '<h4>You won!</h4><button class="playagain_button">↻</button>';
+                document.body.appendChild(playagain);
+                let play_again = document.querySelector(".playagain_button");
+
+                play_again.onclick = function(){
+                    container.style.display = "block";
+                    playagain.remove();
+                }
+                gameover = true;
+            }
+        }
+        user_guess.value = ""; // clear input field
+        break; // exit while loop
+        
+    }
+    setTimeout(() => {
+        notify.remove();
+    }, 2000);
+}
+```
+
+
+# Array 
+```js
+// Array in JavaScript
+// An array is a collection of elements of the same data type stored in contiguous memory locations.
+
+// Creating an Array
+let colors = ['red', 'green', 'blue'];
+
+// Accessing Array Elements
+console.log(colors[0]); // Output: red
+
+// Array Operations
+// 1. Push: Adds one or more elements to the end of an array.
+colors.push('yellow');
+console.log(colors); // Output: ['red', 'green', 'blue', 'yellow']
+
+// 2. Pop: Removes the last element from an array.
+colors.pop();
+console.log(colors); // Output: ['red', 'green', 'blue']
+
+// 3. Shift: Removes the first element from an array.
+colors.shift();
+console.log(colors); // Output: ['green', 'blue']
+
+// 4. Unshift: Adds one or more elements to the beginning of an array.
+colors.unshift('orange');
+console.log(colors); // Output: ['orange', 'green', 'blue']
+
+// Array Functions
+// 1. Concat: Joins two or more arrays into a single array.
+let numbers = [1, 2, 3];
+let combined = colors.concat(numbers);
+console.log(combined); // Output: ['orange', 'green', 'blue', 1, 2, 3]
+
+// 2. Includes: Checks if an array includes a specified element.
+console.log(colors.includes('green')); // Output: true
+
+// 3. IndexOf: Returns the index of the first occurrence of a specified element.
+console.log(colors.indexOf('blue')); // Output: 2
+
+// 4. Join: Joins all elements of an array into a string.
+console.log(colors.join(', ')); // Output: orange, green, blue
+
+// 5. Slice: Returns a shallow copy of a portion of an array.
+let sliced = colors.slice(1, 2);
+console.log(sliced); // Output: ['green']
+
+// 6. Splice: Adds or removes elements from an array.
+colors.splice(1, 0, 'purple');
+console.log(colors); // Output: ['orange', 'purple', 'green', 'blue']
+
+// 7. Sort: Sorts the elements of an array in place.
+let sorted = colors.sort();
+console.log(sorted); // Output: ['blue', 'green', 'orange', 'purple']
+
+// 8. Reverse: Reverses the order of the elements of an array.
+let reversed = colors.reverse();
+console.log(reversed); // Output: ['purple', 'orange', 'green', 'blue']
+
+// 9. Map: Creates a new array with the results of applying a provided function on every element in this array.
+let mapped = colors.map(color => color.toUpperCase());
+console.log(mapped); // Output: ['PURPLE', 'ORANGE', 'GREEN', 'BLUE']
+
+// 10. Filter: Creates a new array with all elements that pass the test implemented by the provided function.
+let filtered = colors.filter(color => color.length > 5);
+console.log(filtered); // Output: ['orange', 'purple']
+
+// 11. Reduce: Applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+let reduced = colors.reduce((acc, color) => acc + color.length, 0);
+console.log(reduced); // Output: 20
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* advanced method to generate random numbers between 1 and 10
+```js
+// Array of numbers from 1 to 10
+
+let numbers = Array.from({length: 10}, (_, i) => i + 1);
+
+console.log(numbers); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+```
