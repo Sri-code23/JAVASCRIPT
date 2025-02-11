@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature conversion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Temperature converter</h2>
+        <input type="number" id="textbox" value="0">
+        <div class="checkers">
+            <label for="celsius">
+                <input type="radio" id="celsius" name="temperature" >
+                <span id="check">° C - ° F</span>
+            </label>
+            <label for="fahren">
+                <input type="radio" id="fahren" name="temperature" >
+                <span id="check">° F - ° C</span>
+            </label>
+        </div>
+        <p id="output">
+            <!-- filled by js -->
+        </p>
+        <button id="convert" onclick="convert()">convert</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
