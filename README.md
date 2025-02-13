@@ -1912,3 +1912,369 @@ generatePassword(passwordLength, includeUppercase, includeLowercase, includeNumb
 ```
 
 
+
+
+# spread operator
+The spread operator is a feature in JavaScript that allows an iterable (such as an array or a string ) to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected.
+
+```js
+// The spread operator in JavaScript is denoted by three dots (...) and is used to expand an iterable (like an array or object) into individual elements.
+
+// Example 1: Using the spread operator with arrays
+let arr1 = [1, 2, 3];
+let arr2 = [...arr1, 4, 5, 6];
+console.log(arr2); // Output: [1, 2, 3, 4, 5, 6]
+
+// Example 2: Using the spread operator with objects
+let obj1 = { a: 1, b: 2 };
+let obj2 = { ...obj1, c: 3, d: 4 };
+console.log(obj2); // Output: { a: 1, b: 2, c: 3, d: 4 }
+
+// Example 3: Using the spread operator with function arguments
+function sum(a, b, c) {
+  return a + b + c;
+}
+let numbers = [1, 2, 3];
+console.log(sum(...numbers)); // Output: 6
+
+// Example 4: Using the spread operator with the Math.max function
+let numbers2 = [1, 2, 3, 4, 5];
+console.log(Math.max(...numbers2)); // Output: 5
+
+
+// Rest parameter in JavaScript is denoted by three dots (...) and is used to capture a variable number of arguments
+// in a function. It is used to pass a variable number of arguments to a function.
+
+
+// Example 5: Using the rest parameter in JavaScript
+function myFunction(...args) {
+  console.log(args); // Output: [1, 2, 3, 4, 5]
+}
+myFunction(1, 2, 3, 4, 5);
+
+// Example 6: Using the rest parameter with other parameters
+function myFunction(a, b, ...args) {
+  console.log(a); // Output: 1
+  console.log(b); // Output: 2
+  console.log(args); // Output: [3, 4, 5]
+}
+myFunction(1, 2, 3, 4, 5);
+
+// Example 7: Using the rest parameter in an arrow function
+const myFunction = (...args) => {
+  console.log(args); // Output: [1, 2, 3, 4, 5]
+}
+myFunction(1, 2, 3, 4, 5);
+
+```
+
+
+# dice Roller (project)
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice-roll</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Dice Roll</h1>
+        <label id="label">No.of Dice :</label>
+        <input type="number" id="numofdice" value="1" min="1" max="10" required>
+        <button id="roll" onclick="rollDice()"> ✊🏼  🖐🏼  🎲  </button>
+        <div class="output_field">
+            <p id="output">
+                <!-- numbers will be displayed here -->
+            </p>
+            <div class="images">
+                <!-- images will be filled here -->
+            </div>
+            <p id="total"></p>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+```css
+body{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.container{
+    background-color: rgb(0, 0, 0);
+    padding:20px 20px;
+    min-width: 300px;
+    min-height: 200px;
+    border-radius: 5px;
+    border: 0.1ex solid rgb(51, 51, 51);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 50px;
+    box-shadow: 1px 1px 10px 3px rgba(54, 54, 54, 0.2);
+}
+
+#numofdice{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    width:50%;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+}
+
+#label{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 8px;
+}
+
+button{
+    padding: 10px 50px;
+    margin: 10px 20px;
+    background-color: rgb(53, 104, 87);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: larger;
+    width: 80%;
+}
+
+.output_field{
+    display: none;
+    /* border: 0.1ex solid rgb(58, 58, 58); */
+    width: 90%;
+    padding: 10px 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+#output{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#dice{
+    width: 80px;
+    border-radius: 10px;
+}
+
+#total{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(0, 255, 191);
+    text-align: center;
+}
+
+```
+
+```js
+// dice roll game
+
+function total_(args){
+    let total = 0;
+    for (let arg of args){
+        total += arg;
+    }
+    return total;
+}
+
+
+function rollDice(){
+    random_nums = [];
+    images_array = [];
+    let dices = document.getElementById("numofdice").value ;
+    let images = document.querySelector(".images");
+    let output = document.getElementById("output");
+    let output_field = document.querySelector(".output_field");
+
+
+    for(let i = 1; i<=dices ; i++){
+        let nums = Math.floor((Math.random() * 6) +1);
+        random_nums.push(nums);
+        let img_url = `<img id="dice" src="dice_images/${nums}.jpg" alt="dice1">`;
+        images_array.push(img_url);
+    }
+    output_field.style .display = "block";
+    output.textContent = random_nums.join(" - ");
+    images.innerHTML = images_array.join(" ");
+    let tot = total_(random_nums)
+    document.getElementById("total").textContent = "Total : " + tot;
+}
+
+
+```
+
+# temperature converter
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature conversion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Temperature converter</h2>
+        <input type="number" id="textbox" value="0">
+        <div class="checkers">
+            <label for="celsius">
+                <input type="radio" id="celsius" name="temperature" >
+                <span id="check">° C - ° F</span>
+            </label>
+            <label for="fahren">
+                <input type="radio" id="fahren" name="temperature" >
+                <span id="check">° F - ° C</span>
+            </label>
+        </div>
+        <p id="output">
+            <!-- filled by js -->
+        </p>
+        <button id="convert" onclick="convert()">convert</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+```css
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 0.1ex solid rgb(0, 0, 0);
+    padding: 10px 10px;
+    border-radius: 10px;
+    width: 300px;
+    height:auto;
+    background-color: rgb(66, 48, 66);
+    gap: 10px;
+}
+
+h2{
+    color: white;
+    margin-top: 10px;
+}
+
+#textbox{
+    width: 80%;
+    height: 15px;
+    outline: none;
+    padding: 20px 15px;
+    /* margin: 2px 5px; */
+    background-color: black;
+    color: white;
+    border: 0.1ex solid rgb(59, 59, 59);
+    border-radius: 5px;
+    font-size: 25px;
+}
+
+.checkers{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    flex-direction: row;
+    padding: 10px 10px;
+}
+
+#celsius, #fahren{
+    display: none;
+}
+
+#check{
+    /* border: 0.1ex solid rgb(46, 46, 46); */
+    background-color: rgb(78, 78, 78);
+    padding: 10px 35px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    color: grey;
+}
+
+input[type="radio"]:checked + #check{
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+#output{
+    width: 100%;
+    height: 100%;
+    font-size: larger;
+    text-align: center;
+}
+
+#convert{
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 1px 1px 5px rgba(88, 67, 128, 0.5);
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+```
+
+```js
+const button = document.getElementById("convert");
+const c_f = document.getElementById("celsius");
+const f_c = document.getElementById("fahren");
+const output = document.getElementById("output");
+
+function convert() {
+    let input = document.getElementById("textbox").value;
+    if(c_f.checked){
+        let result = (input * 9/5) + 32;
+        output.textContent = result.toFixed(2) + "°F";
+    }
+    else if(f_c.checked){
+        let result = (input - 32) * 5/9;
+        output.textContent = result.toFixed(2) + "°C";
+    }
+    else{
+        output.textContent = " ❗ Please select the unit"
+    }
+}
+```
+
+# map(), filter(), reduce()
