@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Doe - Artist Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <section id="hero">
+            <canvas id="particleCanvas"></canvas>
+            <div class="hero-content">
+                <h1>JANE DOE</h1>
+                <p>Visual Artist & Creative Director</p>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h2>Featured Works</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/placeholder.svg?height=600&width=400" alt="Art piece 1">
+                    <div class="overlay">
+                        <h3>Ethereal Dreams</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/placeholder.svg?height=600&width=400" alt="Art piece 2">
+                    <div class="overlay">
+                        <h3>Urban Symphony</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/placeholder.svg?height=600&width=400" alt="Art piece 3">
+                    <div class="overlay">
+                        <h3>Digital Nostalgia</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/placeholder.svg?height=600&width=400" alt="Art piece 4">
+                    <div class="overlay">
+                        <h3>Abstract Reality</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="digital">Digital</button>
+                <button class="filter-btn" data-category="paintings">Paintings</button>
+                <button class="filter-btn" data-category="sculptures">Sculptures</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Portfolio items will be dynamically added here -->
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <p>Interested in collaborating or commissioning a piece? Let's create something amazing together.</p>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Jane Doe. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+------------------
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: black;
+    color: white;
+    line-height: 1.6;
+}
+
+/* Hero section */
+#hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#particleCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    color: #a0a0a0;
+}
+
+/* Gallery section */
+#gallery {
+    padding: 5rem 0;
+}
+
+#gallery h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+/* Portfolio section */
+#portfolio {
+    padding: 5rem 0;
+}
+
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
+
+.portfolio-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-item-overlay {
+    opacity: 1;
+}
+
+/* Contact section */
+#contact {
+    padding: 5rem 0;
+    background-color: #1a1a1a;
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#contact p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: #a0a0a0;
+}
+
+#contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #333;
+    background-color: #222;
+    color: white;
+    border-radius: 0.25rem;
+}
+
+textarea {
+    min-height: 120px;
+}
+
+button[type="submit"] {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #e0e0e0;
+}
+
+/* Footer */
+footer {
+    background-color: black;
+    border-top: 1px solid #333;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-link {
+    color: #a0a0a0;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .gallery-grid,
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+-------------
+// Particle animation for hero section
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 100;
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.1;
+        this.speedX = Math.random() * 2 - 1;
+        this.speedY = Math.random() * 2 - 1;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+    }
+
+    draw() {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function initParticles() {
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const particle of particles) {
+        particle.update();
+        particle.draw();
+    }
+
+    requestAnimationFrame(animateParticles);
+}
+
+initParticles();
+animateParticles();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// Portfolio filtering
+const portfolioData = [
+    { id: 1, title: "Digital Dreamscape", category: "digital", image: "/placeholder.svg?height=400&width=600", year: "2024" },
+    { id: 2, title: "Abstract Harmony", category: "paintings", image: "/placeholder.svg?height=400&width=600", year: "2023" },
+    { id: 3, title: "Metal Flow", category: "sculptures", image: "/placeholder.svg?height=400&width=600", year: "2024" },
+    { id: 4, title: "Neon Nights", category: "digital", image: "/placeholder.svg?height=400&width=600", year: "2023" },
+    { id: 5, title: "Nature's Whisper", category: "paintings", image: "/placeholder.svg?height=400&width=600", year: "2024" },
+    { id: 6, title: "Bronze Echo", category: "sculptures", image: "/placeholder.svg?height=400&width=600", year: "2023" },
+];
+
+const portfolioGrid = document.querySelector('.portfolio-grid');
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+function renderPortfolioItems(items) {
+    portfolioGrid.innerHTML = '';
+    items.forEach(item => {
+        const portfolioItem = document.createElement('div');
+        portfolioItem.classList.add('portfolio-item');
+        portfolioItem.innerHTML = `
+            <img src="${item.image}" alt="${item.title}">
+            <div class="portfolio-item-overlay">
+                <h3>${item.title}</h3>
+                <p>${item.year}</p>
+            </div>
+        `;
+        portfolioGrid.appendChild(portfolioItem);
+    });
+}
+
+function filterPortfolio(category) {
+    const filteredItems = category === 'all' 
+        ? portfolioData 
+        : portfolioData.filter(item => item.category === category);
+    renderPortfolioItems(filteredItems);
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        filterPortfolio(button.dataset.category);
+    });
+});
+
+// Initial render
+renderPortfolioItems(portfolioData);
+
+// Form validation
+const contactForm = document.getElementById('contact-form');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    if (name.length < 2) {
+        alert('Name must be at least 2 characters.');
+        return;
+    }
+
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    if (message.length < 10) {
+        alert('Message must be at least 10 characters.');
+        return;
+    }
+
+    // Here you would typically send the form data to a server
+    console.log('Form submitted:', { name, email, message });
+    alert('Message sent successfully!');
+    contactForm.reset();
+});
+
+// Update copyright year
+document.getElementById('current-year').textContent = new Date().getFullYear();
+
+----
+
