@@ -2327,6 +2327,119 @@ output3.textContent = noop ;
 
 ```
 
+# function declaration and function expression
+## function declaration
+```js
+// example 1
+function greet(name){
+    // console.log("hello ", name);
+    console.log(`hello, ${name}`);
+}
+greet("sri through function");
+
+// example 2
+let numbers = [1,2,3,4,5,6,7,8,9];
+function evennos(){
+    let even = numbers.filter(num => num % 2 == 0);
+    console.log(even);
+}
+evennos(numbers);
+
+```
+
+## function epression
+```js
+// function expression
+// instead of declaring the function and calling it we can dirctly pass the function expression 
+// as an argument to another function
+
+// example 1
+console.log("Function expression");
+
+let name = function(){
+    console.log("hello from function expression");
+}
+name("sri");
+
+// example 2 ///////////////////////////
+let all_numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+// console.log(all_numbers);
+function even_no(num){
+    if(num %2 == 0){
+        return num;
+    }
+}
+let even_number = all_numbers.filter(even_no);
+console.log(even_number);
+/////////////////////////////
+
+// instead of do this ⬆ we can do this ⬇
+let even_numbers = all_numbers.filter(function(num){
+    if(num %2 == 0){
+        return num;
+    }
+})
+console.log(even_numbers);
+
+```
+
+
+# Arrow function
+
+```js
+console.log("hello");
+
+// function expression
+
+let names =["sri","dharan","luffy","madara"];
+
+let greet =function(name){console.log(`hello ${name}`)};
+
+greet(names); //output : hello sri,dharan,luffy,madara
+names.map(greet); 
+// output
+// hello sri
+// hello dharan
+// hello luffy
+// hello madara
+
+// instead of function expression
+// we can use arrow function
+// arrow function is a shorthand for function expression
+// it is used to define small functions
+
+// arrow function example
+
+console.log("using arrow function");
+let female_characters = ["nami","maki","fubuki","makima"];
+
+let greeting = (f_name) => {console.log(`hello ${f_name}`)};
+female_characters.map(greeting);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
