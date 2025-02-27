@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice-roll</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Dice Roll</h1>
+        <label id="label">No.of Dice :</label>
+        <input type="number" id="numofdice" value="1" min="1" max="10" required>
+        <button id="roll" onclick="rollDice()"> ✊🏼  🖐🏼  🎲  </button>
+        <div class="output_field">
+            <p id="output">
+                <!-- numbers will be displayed here -->
+            </p>
+            <div class="images">
+                <!-- images will be filled here -->
+            </div>
+            <p id="total"></p>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

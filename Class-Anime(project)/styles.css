@@ -1,0 +1,333 @@
+body{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header{
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    background-color: rgb(20, 20, 20);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h2{
+    font-size:19px;
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    /* border: 0.1ex solid rgb(0, 199, 76); */
+}
+
+.container{
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 0.1ex solid rgb(199, 0, 0); */
+    min-height: 300px;
+    gap: 30px;
+    border-radius: 10px;
+}
+
+.cards_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 10px;
+    gap: 30px;
+    height: auto;
+    /* border: 0.1ex solid rgb(248, 223, 0); */
+    border-radius: inherit;
+    flex-wrap: wrap;
+    margin: 20px 20px;
+}
+
+.card{
+    width:150px;
+    height: 180px;
+    position: relative;
+    border: 0.1ex solid grey;
+    color: white;
+    border-radius: inherit;
+    background-color: transparent;
+    box-shadow: 10px 10px 80px 30px #030303 inset;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    /* animation: fade-in 0.2s ease-out ; */
+}
+
+.card::before{
+    content: "";
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    z-index: -1;
+    box-shadow: 10px 10px 80px 30px #3c4242 inset;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    border-radius: inherit;
+}
+
+.card::after{
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    right: 10px;
+    width: 100px;
+    height: 10px;
+    z-index: -2;
+    animation: moving 8s ease-in-out infinite;
+    background-color: rgb(255, 255, 255);
+    /* border-radius: 50%; */
+    clip-path:polygon(
+        0% 50%,
+        50% 50%,
+        75% 50%,
+        50% 100%,
+    );
+}
+
+@keyframes moving {
+    0%{
+        transform: translate(-19px);
+    }
+    50%{
+        transform: translate(0px);
+    }
+    100%{
+        transform: translateX(-19px);
+    }
+
+}
+
+.card h3{
+    font-size: 20px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.card p{
+    font-size: 25px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.card p:nth-child(2){
+    font-size: 20px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.button_container{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: rgb(255, 255, 255);
+    width: auto;
+    min-width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.create_new{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 30px 10px #000000;
+    padding: 0px 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    font-size: 42px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+
+.create_new:hover{
+    font-size: 45px;
+}
+
+@keyframes rotate {
+    from{
+        transform: rotate(50deg);
+    }
+    to{
+        transform: rotate(150deg);
+    }
+}
+
+.create_new:hover::after{
+    opacity:1;
+    animation: fade-in 0.2s ease-out;
+}
+
+/* .create_new:not(:hover)::after{
+    opacity:1;
+    animation: fade-out 0.3s ease-in-out;
+} */
+
+.create_new::after {
+    content:"Add";
+    position: absolute;
+    line-height: 60px;
+    width: 123px;
+    height: 60px;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 28px;
+    background-color: rgb(255, 255, 255);
+    z-index: -1;
+    font-size: 22px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    text-indent: 10px;
+    animation: fade-out 0.2s ease-in;
+}
+
+@keyframes fade-in {
+    from{
+        transform: translate(10px) scale(0.8);
+        opacity: 0;
+    }
+    to{
+        transform: translate(0px) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from{
+        transform: translate(0px) scale(1);
+        opacity: 1;
+    }
+    to{
+        transform: translate(10px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+#dialog_box{
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    border: 0.1ex solid grey;
+    animation: fade-in 0.2s ease-out ;
+}
+
+#dialog_box::backdrop{
+    background: transparent;
+    backdrop-filter: blur(10px);
+}
+
+.dialog_container{
+    width:100%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    gap: 0px;
+    /* padding: 10px 10px; */
+}
+
+.header_container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: rgb(34, 73, 60); */
+    padding: 0px 10px;
+    margin: 0px 0px;
+    border-bottom: 0.1ex solid grey;
+}
+
+.close{
+    background-color: rgb(248, 248, 248);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    font-size: 16px;
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+}
+
+.closing_animation{
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.3s ease-in;
+}
+
+.input_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    /* border: 0.1ex solid grey; */
+    width: 100%;
+    padding: 10px 0px;
+    border-radius: 10px;
+    height: 150px;
+    margin-top: 10px;
+}
+
+.input_container input{
+    width: 70%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 2px 10px;
+    background-color: rgb(31, 31, 31);
+}
+
+.input_container input:focus{
+    border: 1px solid white;
+    color: white;
+
+}
+
+.create_button{
+    background-color: rgb(61, 61, 61);
+    padding: 5px 30px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin-top: 10px;
+}
+
+
+

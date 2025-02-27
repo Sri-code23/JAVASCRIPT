@@ -1,0 +1,99 @@
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    width: 300px;
+    height: 200px;
+    border: 0.2ex solid grey;
+    background-color: #1c1e2e;
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#heading{
+    font-size: 20px;
+}
+
+.card{
+    background-color: #1c1e2e;
+    border-radius: 10px;
+    padding: 10px 10px;
+    width: 280px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input{
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    width: 80%;
+    height: 20px;
+    border: 0.1ex solid grey;
+    outline: none;
+    padding: 20px 20px;
+    font-size: 25px;
+}
+
+.submit{
+    background-color: #f1f1f1;
+    padding: 10px 10px;
+    margin-top: 10px;
+    width:80%;
+    border: 0.1ex solid rgb(0, 0, 0);
+}
+
+.output_div{
+    width: 70%;
+    height: auto;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding:0px 10px;
+    border-radius: 5px;
+    border: 0.1ex solid grey;
+    background-color: rgb(0, 0, 0);
+}
+
+.playagain{
+    background-color: #000000;
+    border-radius: 10px;
+    padding: 10px 10px;
+    width: 280px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.playagain h4{
+    color: rgb(0, 182, 76);
+    font-size: 30px;    
+}
+
+.playagain_button{
+    background: transparent;
+    font-size: 70px;
+    color: rgb(255, 255, 255);
+    padding: 10px 10px;
+    margin-bottom: 30px;
+    width:80%;
+    border: none;
+    border-radius: 5px;
+}
+

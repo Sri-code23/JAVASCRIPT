@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h2>Anime characters</h2>
+    </header>
+    <main>
+        <div class="container">
+            <div class="cards_container">
+                <!--  -->
+            </div>
+            <div class="button_container">
+                <button class="create_new"> 
+                    +
+                </button>
+            </div>
+
+            <dialog id="dialog_box">
+                <div class="dialog_container">
+
+                    <div class="header_container">
+                        <h2 class="heading">Enter character details</h2>
+                        <button class="close" onclick="closing_animation()">⨉</button>
+                    </div>
+
+                    <div class="input_container">
+                        <input type="text" id="name" placeholder="Name of the character">
+                        <input type="text" id="power" placeholder="power of the character">
+                        <input type="number" id="age" placeholder="age of the character">    
+                    </div>
+
+                    <button class="create_button">Create </button>
+
+                </div>
+            </dialog>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

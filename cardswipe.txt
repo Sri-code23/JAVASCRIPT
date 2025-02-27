@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Card Animation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card">
+            <div class="image-wrapper">
+                <img src="https://source.unsplash.com/400x250/?mountain" alt="Mountain">
+            </div>
+            <div class="card-content">
+                <h2>TROJENA MOUNTAIN</h2>
+                <p>Blending natural and developed landscapes.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-wrapper">
+                <img src="https://source.unsplash.com/400x250/?desert" alt="Desert">
+            </div>
+            <div class="card-content">
+                <h2>SAND DUNES</h2>
+                <p>Explore the vast golden landscapes.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-wrapper">
+                <img src="https://source.unsplash.com/400x250/?lake" alt="Lake">
+            </div>
+            <div class="card-content">
+                <h2>CRYSTAL LAKE</h2>
+                <p>A serene view of clear waters.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+--------------------
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(circle, #f7f7f7, #d6d6d6);
+    overflow: hidden;
+}
+
+/* Card Container */
+.card-container {
+    position: relative;
+    width: 320px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Individual Cards */
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    transition: transform 0.6s ease-in-out, opacity 0.6s;
+}
+
+/* Image Wrapper */
+.image-wrapper {
+    width: 90%;
+    height: 55%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Card Text Content */
+.card-content {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    border-radius: 10px;
+    width: 90%;
+}
+
+/* Card Stacking Effects */
+.card-container .card:nth-child(1) {
+    z-index: 3;
+    transform: scale(1);
+}
+.card-container .card:nth-child(2) {
+    z-index: 2;
+    transform: scale(0.95) translateY(10px);
+    opacity: 0.9;
+}
+.card-container .card:nth-child(3) {
+    z-index: 1;
+    transform: scale(0.9) translateY(20px);
+    opacity: 0.8;
+}
+
+/* Swipe Animation */
+.card.swipe {
+    transform: translateY(-120%) rotate(-8deg);
+    opacity: 0;
+}
+---------------
+
+document.addEventListener("DOMContentLoaded", function () {
+    let cardContainer = document.querySelector(".card-container");
+
+    cardContainer.addEventListener("click", () => {
+        let cards = document.querySelectorAll(".card");
+
+        if (cards.length < 2) return;
+
+        let topCard = cards[0];
+
+        // Add swipe animation
+        topCard.classList.add("swipe");
+
+        setTimeout(() => {
+            // Move the swiped card to the back
+            cardContainer.appendChild(topCard);
+            topCard.classList.remove("swipe");
+
+            // Reset stacking
+            let allCards = document.querySelectorAll(".card");
+            allCards.forEach((card, idx) => {
+                card.style.zIndex = allCards.length - idx;
+                card.style.transform = `scale(${1 - idx * 0.05}) translateY(${idx * 10}px)`;
+                card.style.opacity = `${1 - idx * 0.15}`;
+            });
+
+        }, 600);
+    });
+});
+
+----------
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////
+///////////////////////////////////
+/////////////////////////////////////////////
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine Swipe Animation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Top Bar (Logo + Search) -->
+    <header>
+        <div class="logo">📖 Mogaz</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+    </header>
+
+    <!-- Swipe Card Container -->
+    <div class="swipe-container">
+        <div class="card">
+            <img src="https://source.unsplash.com/400x550/?fashion,model" alt="Magazine Cover">
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/400x550/?magazine,cover" alt="Magazine Cover">
+        </div>
+        <div class="card">
+            <img src="https://source.unsplash.com/400x550/?style,fashion" alt="Magazine Cover">
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav>
+        <div class="nav-icon">🏠</div>
+        <div class="nav-icon">📚</div>
+        <div class="nav-icon">🔍</div>
+        <div class="nav-icon">⚙️</div>
+    </nav>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+----------------
+
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    background: black;
+    color: white;
+    overflow: hidden;
+}
+
+/* Header (Logo & Search) */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+}
+
+/* Swipe Card Container */
+.swipe-container {
+    position: relative;
+    width: 320px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Cards */
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  border: 1px solid #ffffff
+}
+
+/* Images */
+.card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+/* Card Stacking */
+.swipe-container .card:nth-child(1) {
+    z-index: 3;
+    transform: scale(1) rotate(0deg);
+}
+.swipe-container .card:nth-child(2) {
+    z-index: 2;
+    transform: scale(0.95) rotate(-3deg);
+    opacity: 0.9;
+}
+.swipe-container .card:nth-child(3) {
+    z-index: 1;
+    transform: scale(0.9) rotate(-6deg);
+    opacity: 0.8;
+}
+
+/* Bottom Navigation */
+nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px 20px 0 0;
+}
+
+.nav-icon {
+    font-size: 24px;
+}
+----------------------------
+document.addEventListener("DOMContentLoaded", function () {
+    let cardContainer = document.querySelector(".swipe-container");
+
+    cardContainer.addEventListener("click", () => {
+        let cards = document.querySelectorAll(".card");
+
+        if (cards.length < 2) return;
+
+        let topCard = cards[0];
+
+        // Add swipe animation
+        topCard.style.transform = "translateY(-150%) rotate(-10deg)";
+        topCard.style.opacity = "0";
+
+        setTimeout(() => {
+            // Move the swiped card to the back
+            cardContainer.appendChild(topCard);
+            topCard.style.transform = "";
+            topCard.style.opacity = "1";
+
+            // Reset stacking
+            let allCards = document.querySelectorAll(".card");
+            allCards.forEach((card, idx) => {
+                card.style.zIndex = allCards.length - idx;
+                card.style.transform = `scale(${1 - idx * 0.05}) rotate(${idx * -3}deg)`;
+                card.style.opacity = `${1 - idx * 0.15}`;
+            });
+
+        }, 500);
+    });
+});
+----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////
+/////////////////////////////////////
+///////////////////////////////////
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layered Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="gallery">
+        <img src="https://source.unsplash.com/random/300x400?sig=1" class="gallery-item layer-1">
+        <img src="https://source.unsplash.com/random/250x350?sig=2" class="gallery-item layer-2">
+        <img src="https://source.unsplash.com/random/350x450?sig=3" class="gallery-item layer-3">
+        <img src="https://source.unsplash.com/random/200x300?sig=4" class="gallery-item layer-4">
+        <img src="https://source.unsplash.com/random/320x400?sig=5" class="gallery-item layer-5">
+        <img src="https://source.unsplash.com/random/280x360?sig=6" class="gallery-item layer-6">
+        <img src="https://source.unsplash.com/random/310x420?sig=7" class="gallery-item layer-7">
+        <img src="https://source.unsplash.com/random/270x330?sig=8" class="gallery-item layer-8">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+---------------
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.gallery {
+    position: relative;
+    width: 80vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-item {
+    position: absolute;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    padding: 40px 40px;
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-out;
+}
+
+/* Layered Positions */
+.layer-1 { top: 5%; left: 10%; z-index: 1; }
+.layer-2 { top: 15%; left: 50%; z-index: 2; }
+.layer-3 { top: 30%; left: 20%; z-index: 3; }
+.layer-4 { top: 45%; left: 60%; z-index: 4; }
+.layer-5 { top: 60%; left: 15%; z-index: 5; }
+.layer-6 { top: 70%; left: 50%; z-index: 6; }
+.layer-7 { top: 25%; left: 70%; z-index: 7; }
+.layer-8 { top: 80%; left: 30%; z-index: 8; }
+
+/* Hover Effect */
+.gallery-item:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+------------------
+
+
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+document.addEventListener("mousemove", (event) => {
+    let x = (window.innerWidth / 2 - event.pageX) / 50;
+    let y = (window.innerHeight / 2 - event.pageY) / 50;
+
+    requestAnimationFrame(() => {
+        galleryItems.forEach((item, index) => {
+            let depth = (index + 1) * 1.5;
+            item.style.transform = `translate(${x * depth}px, ${y * depth}px) scale(1.02)`;
+        });
+    });
+});
+
+
+---------
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+///////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
