@@ -3769,33 +3769,527 @@ function closing_animation(){
 // }
 
 ```
-=======
 
 
 
 
 
 
+# Nested objects
+```javascript
+let user = {
+  name: 'John Doe',
+  age: 30,
+  occupation: 'Software Developer',
+  address: {
+    street: '123 Main St',
+    city: 'Anytown',
+    state: 'CA',
+    zip: '12345'
+  }
+};
+
+// Accessing nested object properties
+console.log(user.address.street); // Output: 123 Main St
+console.log(user.address.city); // Output: Anytown
+
+// Updating nested object properties
+user.address.street = '456 Elm St';
+console.log(user.address.street); // Output: 456 Elm St
+
+// Adding new properties to a nested object
+user.address.country = 'USA';
+console.log(user.address.country); // Output: USA
+
+// Deleting properties from a nested object
+delete user.address.state;
+console.log(user.address);
+
+// Using object destructuring to extract nested object properties
+let { street, city, state, zip } = user.address;
+console.log(street); // Output: 456 Elm St
+console.log(city); // Output: Anytown
+console.log(state); // Output: undefined
+console.log(zip); // Output: 12345
+
+// Using the optional chaining operator (?.) to safely access nested object properties
+console.log(user.address?.country); // Output: USA
+console.log(user.address?.state); // Output: undefined
+
+// Using the nullish coalescing operator (??) to provide a default value for nested object properties
+console.log(user.address.street ?? 'Unknown'); // Output: 456 Elm St
+console.log(user.address.state ?? 'Unknown'); // Output: Unknown
+```
+
+## example-2
+```js
+// Nested objects
+const user_data = {
+    name: "Sridharan",
+    age: 23,
+    address: {
+        street: "123 Main St",
+        city: "Chennai",
+        state: "Tamil Nadu",
+        zip: "600001"
+    },
+    skills: ["HTML", "CSS", "JS"],
+    isStudent: true
+};
+
+console.log(user_data);
+console.log(user_data.address);
+console.log(user_data.address.city); // Chennai
+console.log(user_data.skills[1]); // CSS    
+console.log(user_data.isStudent); // true
+console.log(user_data["name"]); // Sridharan
+console.log(user_data["address"]["city"]); // Chennai
+console.log(user_data["skills"][2]); // JS
+```
+
+
+# Array of Objects
+```js
+// Explanation
+// ===========
+// In JavaScript, an array of objects is an array that contains objects as its elements. Each object in the array can have its own properties and values.
+
+// Example 1: Creating an array of objects
+// =======================================
+
+// Define an array of objects
+let users = [
+  { name: 'John Doe', age: 30, occupation: 'Software Developer' },
+  { name: 'Jane Doe', age: 25, occupation: 'Data Scientist' },
+  { name: 'Bob Smith', age: 40, occupation: 'Product Manager' }
+];
+
+// Accessing objects in the array
+console.log(users[0]); // Output: { name: 'John Doe', age: 30, occupation: 'Software Developer' }
+console.log(users[1].name); // Output: Jane Doe
+console.log(users[2].occupation); // Output: Product Manager
+
+// Example 2: Looping through an array of objects
+// ===========================================
+
+// Define an array of objects
+let products = [
+  { id: 1, name: 'Product A', price: 10.99 },
+  { id: 2, name: 'Product B', price: 19.99 },
+  { id: 3, name: 'Product C', price: 29.99 }
+];
+
+// Use a for loop to iterate over the array
+for (let i = 0; i < products.length; i++) {
+  console.log(`Product ${products[i].id}: ${products[i].name} - $${products[i].price}`);
+}
+
+// Example 3: Using array methods with an array of objects
+// ===================================================
+
+// Define an array of objects
+let employees = [
+  { id: 1, name: 'John Doe', salary: 50000 },
+  { id: 2, name: 'Jane Doe', salary: 60000 },
+  { id: 3, name: 'Bob Smith', salary: 70000 }
+];
+
+// Use the map() method to create a new array with employee names
+let employeeNames = employees.map(employee => employee.name);
+console.log(employeeNames); // Output: [ 'John Doe', 'Jane Doe', 'Bob Smith' ]
+
+// Use the filter() method to create a new array with employees who earn more than $60000
+let highSalaryEmployees = employees.filter(employee => employee.salary > 60000);
+console.log(highSalaryEmployees); // Output: [ { id: 3, name: 'Bob Smith', salary: 70000 } ]
+
+// Example 4: Using object destructuring with an array of objects
+// =================================================---------
+
+// Define an array of objects
+let students = [
+  { id: 1, name: 'John Doe', grade: 'A' },
+  { id: 2, name: 'Jane Doe', grade: 'B' },
+  { id: 3, name: 'Bob Smith', grade: 'C' }
+];
+
+// Use object destructuring to extract student names and grades
+let studentInfo = students.map(({ name, grade }) => ({ name, grade }));
+console.log(studentInfo); // Output: [ { name: 'John Doe', grade: 'A' }, { name: 'Jane Doe', grade: 'B' }, { name: 'Bob Smith', grade: 'C' } ]
+
+```
+
+## example-2
+```js
+// Array of objects
+
+const student_database = [
+    {
+        name: "fubuki",
+        age: 20,
+    },
+    {
+        name: "Sri",
+        age: 21,
+    },
+    {
+        name: "Sukuna",
+        age: 22,
+    },
+    {
+        name: "makima",
+        age: 23,
+    }
+];
+
+console.log(student_database[0]);
+console.log(student_database[1]);
+console.log(student_database[2]);
+
+console.log(student_database[0]["name"]);
+// or 
+console.log(student_database[0].name);
+
+
+student_database.forEach((student) => {
+    console.log(student.name);
+    console.log(student.age);
+});
+
+const student_names = student_database.map(student =>student.name);
+console.log(student_names);
+
+const senior = student_database.filter((student) => {
+    return student.age > 21;
+});
+console.log(senior);
+
+
+const student_ = student_database.find((student) => {
+    return student.age === 21;
+});
+console.log(student_);
+
+const reduced = student_database.reduce((acc, student) => {
+    return acc + student.age;
+}, 0);
+console.log(reduced);
+
+```
+
+# Sort function
+
+```js
+// The sort() method sorts the elements of an array in place and returns the array.
+// The default sort order is according to the string Unicode code points.
+
+let names = ['John', 'Alice', 'Bob', 'Eve'];
+let sortedNames = names.sort();
+console.log(sortedNames); // Output: ['Alice', 'Bob', 'Eve', 'John']
+
+// If you want to sort the array in descending order, you can use the following comparison function:
+
+let sortedNamesDesc = names.sort((a, b) => b.localeCompare(a));
+console.log(sortedNamesDesc); // Output: ['John', 'Eve', 'Bob', 'Alice']
+
+// For numerical sorting, you can use the following comparison function:
+
+let numbers = [4, 2, 7, 1, 3];
+let sortedNumbers = numbers.sort((a, b) => a - b);
+console.log(sortedNumbers); // Output: [1, 2, 3, 4, 7]
+
+// For sorting arrays of objects, you can use the following comparison function:
+
+let people = [
+    { name: 'John', age: 25 },
+    { name: 'Alice', age: 30 },
+    { name: 'Bob', age: 20 },
+    { name: 'Eve', age: 35 }
+];
+
+let sortedPeople = people.sort((a, b) => a.age - b.age);
+console.log(sortedPeople);
+// Output:
+// [
+//   { name: 'Bob', age: 20 },
+//   { name: 'John', age: 25 },
+//   { name: 'Alice', age: 30 },
+//   { name: 'Eve', age: 35 }
+// ]
+```
+
+## localecompare 
+```js
+// localeCompare
+// The localeCompare() method returns a number indicating whether a reference string comes before, or after, or is the same as the given string in sort order.
+
+const months2 = ['naruto', 'sasuke', 'sakura', 'kakashi', 'hinata'];
+months2.sort((a,b)=> a.localeCompare(b));
+console.log(months2); // ['hinata', 'kakashi', 'naruto', 'sakura', 'sasuke']
+
+```
+
+# shuffling of array
+
+```js
+// shuffling array
+// Fisher-Yates shuffle
+// The Fisher-Yates shuffle is a fast algorithm for generating
+// a random permutation of an array. It works by swapping elements
+// from the array with a random element from the subarray that includes 
+// the current element and the remaining elements.
+
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random()* (i+1));
+        console.log(`i: ${i}, j: ${j}`);
+    
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+    }
+
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// console.log(shuffle(arr));
+
+const arr2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+console.log(shuffle(arr2));
+```
+
+
+# date object
+```js
+// date object in javascript
+// Date object in javascript is used to work with dates and times. It is used to get the current date and time, set the date and time, and perform date and time calculations.
+
+// Creating a Date object
+// There are four ways to create a new Date object:
+// new Date() - creates a new Date object with the current date and time
+// new Date(year, month, day, hours, minutes, seconds, milliseconds) - creates a new Date object with the specified date and time
+// new Date(milliseconds) - creates a new Date object with the specified number of milliseconds since January 1, 1970
+// new Date(dateString) - creates a new Date object with the specified date string
+
+const date = new Date();
+console.log(date); // current date and time
+
+const date1 = new Date(2021, 10, 10, 10, 10, 10, 10);
+console.log(date1); // 2021-11-10T04:40:10.010Z
+
+const date2 = new Date(1636489810010);
+console.log(date2); // 2021-11-10T04:40:10.010Z
+
+const date3 = new Date("2021-11-10T10:10:10.010Z");
+console.log(date3); // 2021-11-10T10:10:10.010Z
+
+// Getting the current date and time
+// The Date object has several methods for getting the current date and time:
+// getDate() - returns the day of the month (1-31)
+// getDay() - returns the day of the week (0-6)
+// getFullYear() - returns the year (four digits)
+// getHours() - returns the hour (0-23)
+// getMilliseconds() - returns the milliseconds (0-999)
+// getMinutes() - returns the minutes (0-59)
+// getMonth() - returns the month (0-11)
+// getSeconds() - returns the seconds (0-59)
+// getTime() - returns the number of milliseconds since January 1, 1970
+// getTimezoneOffset() - returns the difference between UTC time and local time, in minutes
+// getUTCDate() - returns the day of the month, according to universal time (1-31)
+// getUTCDay() - returns the day of the week, according to universal time (0-6)
+// getUTCFullYear() - returns the year, according to universal time (four digits)
+// getUTCHours() - returns the hour, according to universal time (0-23)
+// getUTCMilliseconds() - returns the milliseconds, according to universal time (0-999)
+// getUTCMinutes() - returns the minutes, according to universal time (0-59)
+// getUTCMonth() - returns the month, according to universal time (0-11)
+// getUTCSeconds() - returns the seconds, according to universal time (0-59)
+
+console.log(date.getDate()); // 10
+console.log(date.getDay()); // 3
+console.log(date.getFullYear()); // 2021
+console.log(date.getHours()); // 10
+console.log(date.getMilliseconds()); // 10
+console.log(date.getMinutes()); // 10
+console.log(date.getMonth()); // 10
+console.log(date.getSeconds()); // 10
+console.log(date.getTime()); // 1636489810010
+console.log(date.getTimezoneOffset()); // -330
+console.log(date.getUTCDate()); // 10
+console.log(date.getUTCDay()); // 3
+console.log(date.getUTCFullYear()); // 2021
+console.log(date.getUTCHours()); // 4
+console.log(date.getUTCMilliseconds()); // 10
+console.log(date.getUTCMinutes()); // 40
+console.log(date.getUTCMonth()); // 10
+console.log(date.getUTCSeconds()); // 10
+
+// Setting the date and time
+// The Date object has several methods for setting the date and time:
+// setDate() - sets the day of the month (1-31)
+// setFullYear() - sets the year (four digits)
+// setHours() - sets the hour (0-23)
+// setMilliseconds() - sets the milliseconds (0-999)
+// setMinutes() - sets the minutes (0-59)
+// setMonth() - sets the month (0-11)
+// setSeconds() - sets the seconds (0-59)
+// setTime() - sets the number of milliseconds since January 1, 1970
+// setUTCDate() - sets the day of the month, according to universal time (1-31)
+// setUTCFullYear() - sets the year, according to universal time (four digits)
+// setUTCHours() - sets the hour, according to universal time (0-23)
+// setUTCMilliseconds() - sets the milliseconds, according to universal time (0-999)
+// setUTCMinutes() - sets the minutes, according to universal time (0-59)
+// setUTCMonth() - sets the month, according to universal time (0-11)
+// setUTCSeconds() - sets the seconds, according to universal time (0-59)
+
+date.setFullYear(2022);
+console.log(date); // 2022-11-10T10:10:10.010Z
+
+date.setMonth(11);
+console.log(date); // 2022-12-10T10:10:10.010Z
+
+date.setDate(20);
+console.log(date); // 2022-12-20T10:10:10.010Z
+
+date.setHours(20);
+console.log(date); // 2022-12-20T20:10:10.010Z
+
+date.setMinutes(20);
+console.log(date); // 2022-12-20T20:20:10.010Z
+
+date.setSeconds(20);
+console.log(date); // 2022-12-20T20:20:20.010Z
+
+date.setMilliseconds(20);
+console.log(date); // 2022-12-20T20:20:20.020Z
+
+date.setTime(1639982420020);
+console.log(date); // 2022-12-20T20:20:20.020Z
+
+date.setUTCFullYear(2023);
+console.log(date); // 2023-12-20T20:20:20.020Z
+
+date.setUTCMonth(11);
+console.log(date); // 2023-12-20T20:20:20.020Z
+
+date.setUTCDate(20);
+console.log(date); // 2023-12-20T20:20:20.020Z
+
+date.setUTCHours(20);
+console.log(date); // 2023-12-20T20:20:20.020Z
+
+date.setUTCMinutes(20);
+console.log(date); // 2023-12-20T20:20:20.020Z
+
+date.setUTCSeconds(20);
+console.log(date); // 2023-12-20T20:20:20.020Z
+
+date.setUTCMilliseconds(20);
+console.log(date); // 2023-12-20T20:20:20.020Z
+
+```
+
+
+
+
+# Closures
+```js
+// closures 
+// A closure is a function having access to the parent scope,
+//  even after the parent function has closed.
+
+// In JavaScript, closures are created every time a function is created,
+//  at function creation time.
+
+// To use a closure, simply define a function inside another function 
+// and expose it.
+
+// In JavaScript, a function can be created inside another function.
+//  This is called a nested function.
+
+// A function can be returned from another function in JavaScript.
+//  This is called a closure.
+
+function outerFunction() {
+    let count = 1;
+    function innerFunction() {
+        count++;
+        console.log(count);
+    }
+
+    function getcount() {
+        return count;
+    }
+    return {innerFunction, getcount};
+}
+var innerFunc = outerFunction();
+innerFunc.innerFunction(); // 2
+innerFunc.innerFunction(); // 3
+innerFunc.innerFunction(); // 3
+innerFunc.innerFunction(); // 3
+
+console.log(`current count: ${innerFunc.getcount()} `)
+
+```
+
+
+
+# setTimeout function
+The `setTimeout()` function in JavaScript is a method of the Window and Worker objects that allows you to execute a block of code after a specified delay. It takes two arguments: the first is a function to be executed, and the second is the delay in milliseconds.
+
+### Basic Example
+
+```javascript
+// Log a message to the console after 2 seconds
+setTimeout(() => console.log("Hello, World!"), 2000);
+```
+
+In this example, the function `() => console.log("Hello, World!")` will be executed after 2 seconds (2000 milliseconds).
+
+### Example with arguments
+
+```javascript
+// Function to be executed
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+// Call greet() with "John Doe" as an argument after 3 seconds
+setTimeout(greet, 3000, "John Doe");
+```
+
+In this example, the function `greet()` will be executed after 3 seconds (3000 milliseconds), with `"John Doe"` as an argument.
+
+### Returning a value from a setTimeout() callback
+
+```javascript
+// Function to be executed
+function add(a, b) {
+  return a + b;
+}
+
+// Using setTimeout() to calculate 2 + 3 after 1 second
+setTimeout(() => {
+  let result = add(2, 3);
+  console.log(result);  // Outputs: 5 after 1 second
+}, 1000);
+```
+
+In this example, the function `add()` will be called with arguments 2 and 3 after 1 second (1000 milliseconds), and the result will be logged to the console.
+
+### Clearing a timeout
+
+```javascript
+// Setting a timeout
+let timeoutId = setTimeout(() => {
+  console.log("Hello, World!");
+}, 2000);
+
+// Clearing the timeout after 1 second
+setTimeout(() => {
+  clearTimeout(timeoutId);
+}, 1000);
+```
+
+In this example, a timeout is set to log a message to the console after 2 seconds, but it's cleared after 1 second, so the message will never be logged.
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 50b3191a5aff0e2a0ff8929bad8ad17105de82d4
