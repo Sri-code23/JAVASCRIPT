@@ -4292,4 +4292,243 @@ In this example, a timeout is set to log a message to the console after 2 second
 
 
 
+# Digital clock (project)
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="strap">
+            <span class="holes"></span>
+            <span class="holes"></span>
+            <span class="holes"></span>
+            <span class="holes"></span>
+            <span class="holes"></span>
+            <span class="holes"></span>
+        </div>
+        <div class="controller">
+            <span class="lines"></span>
+            <span class="lines"></span>
+            <span class="lines"></span>
+            <span class="lines"></span>
+            <span class="lines"></span>
+        </div>
+        
+        <div class="time_container">
+            <div class="time_display">
+                00:00:00
+            </div>
+            <!-- <div class="day">
+                Monday , 12th , 2020
+            </div> -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+## css 
+```css
+body{
+    background-color: black;
+    color: white;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    width: 260px;
+    height: 300px;
+    border-radius: 80px;
+    box-shadow: 0px 0px 80px 30px rgba(0, 0, 0, 0.5) ;
+    position: relative;
+}
+
+.strap{
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 140px;
+    width: 160px;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.5) inset;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5) inset;
+}
+
+.holes{
+    width: 20px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: black;
+}
+
+.controller{
+    position: absolute;
+    right: -15px;
+    background-color: rgb(255, 255, 255);
+    width: 15px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 5px;
+    border-radius: 0px 10px 10px 0px;
+    overflow: hidden;
+}
+
+.lines{
+    width: 15px;
+    height: 6px;
+    background-color: rgb(151, 151, 151);
+    box-shadow: 0px 0px 50px 1px rgba(80, 80, 80, 0.5);
+    /* border: 0.1ex solid rgb(146, 146, 146); */
+}
+
+
+.time_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 95%;
+    /* background-image: url('makima-devil-chainsaw-man-3840x2160-15442.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    height: 95%;
+    border-radius: 70px;
+    overflow: hidden;
+    box-shadow: 0px 0px 50px 10px rgba(51, 51, 51, 0.5) inset;
+    background-color: black;
+}
+
+.time{
+    font-size: 50px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.time_display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 90px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 0px;
+    margin: 0px;
+    backdrop-filter: blur(1px);
+}
+```
+
+## javascript
+```js
+document.addEventListener("DOMContentLoaded",() => {
+    function update_time(){
+        const display_time = document.querySelector(".time_display");
+        const now = new Date();
+        const Hours = now.getHours().toString().padStart(2, "0");
+        const Minutes = now.getMinutes().toString().padStart(2, "0");
+        const seconds = now.getSeconds().toString().padStart(2, "0");
+        const time = `${Hours}:${Minutes}:${seconds}`;
+        display_time.textContent = time;
+    }
+
+    // function update_day(){
+    //     const day = new Date();
+    //     const today = day.getDay();
+    //     const date = day.getDate();
+    //     const month = day.getMonth();
+    //     const year = day.getFullYear();
+
+    //     const Day = `${date},${day},${month},${year}`;
+    //     const display_day = document.querySelector(".day");
+    //     display_day.textContent = today;
+    // }
+    
+    setInterval(() => {
+        update_time();
+        // update_day();
+    }, 1000);
+})
+```
+
+
+# ES6 MODULES
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 MODULES</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+```
+## script module 
+
+```js
+// math.js
+export const PI = 3.14159;
+
+function add(x,y){
+    return x + y;
+}
+
+function subtract(x,y){
+    return x - y;
+}
+
+export {add, subtract};
+
+```
+## main script js
+```js
+// main script
+// script.js
+import {add, subtract, PI} from './math.js';
+
+console.log(add(1,2));
+console.log(subtract(8,2));
+console.log(PI);
+```
+
+
+
+
+
+
+
 
